@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'fav.dart';
 import 'generator.dart';
+import 'form.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
+enum Routes { Home, Favorites, Form }
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
@@ -20,6 +23,9 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 1:
         page = FavoritesPage();
+        break;
+      case 2:
+        page = MyCustomForm();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -39,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.favorite),
                   label: Text('Favorites'),
                 ),
+                NavigationRailDestination(
+                    icon: Icon(Icons.input), label: Text('Form'))
               ],
               selectedIndex: selectedIndex,
               onDestinationSelected: (value) {
